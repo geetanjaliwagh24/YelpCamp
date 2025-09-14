@@ -135,16 +135,14 @@ app.use((req, res, next) => {
 });
 
 
-
+app.get('/', (req, res) => {
+    res.render('home')
+});
 
 app.use('/', userRoutes);
 app.use('/campgrounds', campgroundRoutes)
 app.use('/campgrounds/:id/reviews', reviewRoutes)
 
-
-app.get('/', (req, res) => {
-    res.render('home')
-});
 
 
 app.all(/(.*)/, (req, res, next) => {
@@ -157,9 +155,9 @@ app.use((err, req, res, next) => {
     res.status(statusCode).render('error', { err })
 })
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`Serving on port ${PORT}`)
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+    console.log(`Serving on port ${port}`)
 })
 
 
